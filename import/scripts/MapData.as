@@ -979,7 +979,7 @@ package {
       }
       if(mapNo == 23) {
         setArea(HOPE_HARBOR);
-        battleBGM = [undefined,undefined,undefined,BGM.NYMPHIS_FAE];
+        battleBGM = [undefined,undefined,undefined,BGM.TPF_TRANS];
         battleIcons = [IdolStone,CreepHermit,SlimeWater,""];
         battleIconsAlt = [SlimeBunny,BoulderCoral,IdolWood,""];
         battles = [Battles.pier1,Battles.pier3,Battles.pier2,Battles.pier4];
