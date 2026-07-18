@@ -1,7 +1,7 @@
-package archipelago 
+package archipelago
 {
-    public interface IUTF8MessageRecivedHandler
-    {
-        function onUTF8MessageReceived(receivedText:String):void;
-    }
+   public interface IUTF8MessageRecivedHandler
+   {
+      function onUTF8MessageReceived(receivedText:String):void;
+   }
 }

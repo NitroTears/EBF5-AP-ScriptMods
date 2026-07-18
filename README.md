@@ -35,5 +35,13 @@ This project uses the default formatting settings included with JPEXS. IE:<br>
 - `Tabs for indent` = false<br>
 P-code formatting settings are ignored because P-code is not used in this repo.
 
+### APDebugLogger
+The `APDebugLogger` should be used for logging to the screen as it is available at all times.<br>
+In game, the logger visibility can be toggled on/off with F3.
+
 ### REMOVE THE ASSETS FOLDER FROM SCRIPT EXPORTS!
 When/if you need to reexport all scripts, make sure to remove the `./_assets/` folder *BEFORE* commiting the change.<br>
+
+### Changelog
+See [CHANGELOG.md](./CHANGELOG.md) for a list of recent changes.
+This should be updated with any notable changes to vanilla behavior or useful information that we may want to communicate to users as needed.

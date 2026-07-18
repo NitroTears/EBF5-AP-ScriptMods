@@ -3,6 +3,7 @@ package
    import flash.display.MovieClip;
    import foes.*;
    import text.*;
+   import archipelago.*;
    
    public class MapData
    {
@@ -1676,7 +1677,7 @@ package
             },{
                "mc":"chest0",
                "type":CHEST,
-               "data":[Items.buckle,1,Equips.bandage,1,Items.APiconEbf5SVG,1]
+               "data":[Items.buckle,1,Equips.bandage,1]
             },{
                "mc":"chest1",
                "type":CHEST,
@@ -1693,6 +1694,14 @@ package
                "mc":"chest4",
                "type":CHEST,
                "data":[Items.gamechild,1,Equips.ramchip,1,Items.gamechild,1]
+            },{
+               "mc":"chest5",
+               "type":CHEST,
+               "data":[Items.scouter,1,Items.map,1]
+            },{
+               "mc":"chest6",
+               "type":CHEST,
+               "data":[Items.oldboots,1,Items.bru,1,Items.shuriken,1]
             }];
             doorLinks = [[22,7,6,2,"door"]];
             if(SaveData.questNo == 1)
@@ -2662,7 +2671,7 @@ package
             },{
                "mc":"chest2",
                "type":CHEST,
-               "data":[Items.flower,6,1,Items.silk,3,Items.poptart,1]
+               "data":[Items.flower,6,Items.silk,3,Items.poptart,1]
             },{
                "mc":"chest1",
                "type":CHEST,
@@ -12880,6 +12889,11 @@ package
                maps.addTile(1,16,7,false);
                maps.addTile(1,16,8,false);
             }
+         }
+
+         if (Main.apDataModHandler != null)
+         {
+            Main.apDataModHandler.modifyMapData(maps);
          }
       }
    }

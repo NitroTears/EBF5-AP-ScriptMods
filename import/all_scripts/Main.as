@@ -11,7 +11,15 @@ package
 
    public class Main extends MovieClip
    {
+      public static var apConnectUI:APConnectUI = null;
+
       public static var debugLogAP:archipelago.APDebugLogger;
+
+      public static var apSocket:APSocket = null;
+
+      public static var apItemHandler:ItemHandler = null;
+
+      public static var apDataModHandler:APDataModHandler = null;
 
       public static var kongregate:*;
       
@@ -198,6 +206,18 @@ package
          catch(e:Error)
          {
          }
+      }
+
+      public static function initAPDebugLogger() : void
+      {
+         if(debugLogAP != null || Game.root == null || Game.root.stage == null)
+         {
+            return;
+         }
+
+         debugLogAP = new APDebugLogger();
+         Game.root.stage.addChild(debugLogAP);
+         debugLogAP.initTextField();
       }
       
       public static function testConnection() : *
@@ -575,6 +595,10 @@ package
          if(!newGamePlusFlag)
          {
             Summons.info = {};
+
+            // Reinitialize players and game for starting party/equipment to take effect
+            Players.init();
+            Game.init();
          }
       }
       
@@ -939,9 +963,6 @@ package
             this.timer.start();
             Medals.resendMedals();
          }
-         debugLogAP = new APDebugLogger();
-         stage.addChild(debugLogAP);
-         debugLogAP.initTextField();
       }
       
       public function enterFrameHandler(param1:Event = null) : *
@@ -1014,6 +1035,9 @@ package
          Game.root = this;
          stage.stageFocusRect = false;
          stage.showDefaultContextMenu = false;
+         // Create the debug logger ASAP, this allows for logging 
+         // to be available during the first .meow file loads.
+         initAPDebugLogger();
          this.minigame = new Minigame();
          this.addChild(this.minigame);
          this.minigame.x = 155.8;
@@ -1050,9 +1074,23 @@ package
          Options.idlePlayers = false;
          BattlesAlt.calculateFoeLevels();
          // AP debug connection stuff
-         var socket:APSocket = new APSocket();
-         socket.connect("localhost", 4999);
-         socket.sendUTF8("test message sent by the game to the server");
+         if (Main.apSocket == null)
+         {
+            Main.apSocket = new APSocket();
+         }
+         if (Main.apItemHandler == null)
+         {
+            Main.apItemHandler = new ItemHandler(Main.apSocket);
+         }
+         if (Main.apDataModHandler == null)
+         {
+            Main.apDataModHandler = new APDataModHandler(Main.apSocket);
+         }
+         if (Main.apConnectUI == null)
+         {
+            Main.apConnectUI = new APConnectUI(Main.apSocket);
+            Game.root.stage.addChild(apConnectUI);
+         }
       }
    }
 }

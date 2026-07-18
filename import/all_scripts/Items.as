@@ -1169,11 +1169,13 @@ package
          {
             _loc1_.purchased = 0;
          }
-         oldboots.quantity = 1;
-         scouter.quantity = 1;
-         map.quantity = 1;
-         bru.quantity = 1;
-         shuriken.quantity = 1;
+
+         // Disable initial items as they are now handled by an event in Map152
+         //oldboots.quantity = 1;
+         //scouter.quantity = 1;
+         //map.quantity = 1;
+         //bru.quantity = 1;
+         //shuriken.quantity = 1;
       }
       
       public static function resetKeyItems() : *
